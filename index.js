@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const Article = require("./articles/Article");
 const Category = require("./categories/Category");
+const Article = require("./articles/Article");
 const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
@@ -28,7 +28,11 @@ app.use("/",articlesController);
 
 
 app.get("/", (req, res) =>{
-    res.render("index");
+    Article.findAll().then( articles =>{
+        res.render("index", {articles: articles});
+    }).catch((error) => {
+        console.log(error);
+    })  
 });
 
 app.listen(process.env.PORT || 8080);

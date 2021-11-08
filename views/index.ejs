@@ -1,9 +1,30 @@
 <%-include ('partials/header.ejs') %> 
 <body>
-    <%-include ('partials/navbar.ejs') %> 
+    <%-include ('partials/homenavbar.ejs') %>
+    <br>
     
     <div class="container">
-        <h1>hello world</h1>
+
+        <div class="jumbotron">
+            <h1 class="display-4">Bem vindo!</h1>
+            <p class="lead">Este é um sistema de blog que está em desenvolvimento utilizando :D</p>
+            <hr class="my-4">
+            <p>Obrigado por acessar! att. Ruan Almeida</p>
+          </div>
+
+        <% articles.forEach(article => { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2><%= article.title %></h2>
+                </div>
+
+                <div class="card-body">
+                    <a class="btn btn-success">ler artigo</a>
+                </div>
+            </div>
+            <br>
+            <hr>
+        <% }) %>
     </div>
 
 
