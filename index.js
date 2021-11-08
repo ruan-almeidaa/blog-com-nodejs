@@ -31,6 +31,4 @@ app.get("/", (req, res) =>{
     res.render("index");
 });
 
-app.listen(8080, () => {
-    console.log("servidor ta online");
-});
+app.listen(process.env.PORT || 8080);
