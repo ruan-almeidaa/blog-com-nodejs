@@ -1,19 +1,34 @@
 const express = require("express");
+const connection = require("./database/database");
 const app = express();
+const session = require('express-session');
+
+//models
 const Category = require("./categories/Category");
 const Article = require("./articles/Article");
-const connection = require("./database/database");
+const User = require("./user/User");
 
+//constrollers
 const categoriesController = require("./categories/CategoriesController");
 const articlesController = require("./articles/ArticlesController");
+const usersController = require("./user/UserController");
 
+//config de sessões
+app.use(session({
+    secret: "lorem ipsum",
+    cookie:{maxAge: 3000000000}
+}));
+
+//definindo EJS como minha view engine
 app.set('view engine','ejs');
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 
+//definindo que arquivos estáticos ficarão na pasta public
 app.use(express.static('public'));
 
+//conexao com banco de dados
 connection
     .authenticate()
     .then(() =>{
@@ -21,12 +36,15 @@ connection
     })
     .catch((error) => {
         console.log(error);
-    })
+    });
 
+//rotas dos controllers
 app.use("/",categoriesController);
 app.use("/",articlesController);
+app.use("/",usersController);
 
 
+//rotas principais
 app.get("/", (req, res) =>{
     Article.findAll({
         order:[
