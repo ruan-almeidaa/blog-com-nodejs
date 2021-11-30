@@ -1,0 +1,30 @@
+<%-include ('../../partials/header.ejs') %> 
+<body>
+
+    <div class="container">
+        <hr>
+        <div class="card mt-4">
+            <div class="card-header">
+                Faça login com sua conta de administrador!
+            </div>
+            <div class="card-body">
+                <form action="/authenticate" method="post">
+                    <input class="form-control" type="email" name="email" id="" placeholder="email@exemplo.com">
+                    <br>
+                    <input class="form-control" type="password" name="password" placeholder="*******">
+                    <br>
+                    <button class="btn btn-success btn-block" type="submit">Logar</button>
+                </form>
+
+            </div>
+        </div>
+        <br>
+        <div class="alert alert-primary" role="alert">
+            esse é um sistema feito apenas para fins de estudo, você pode usar os seguintes dados para fazer login:
+            email: admin@gmail.com e senha: admin
+          </div>
+    </div>
+
+</body>
+
+<%-include ('../../partials/footer.ejs') %>
